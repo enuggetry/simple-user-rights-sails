@@ -1,0 +1,85 @@
+<% if(session.authenticated) { %>
+  <div id="messages">
+    <h1>All my messages</h1>
+
+    <table>
+      <th>Name</th>
+      <th>Message</th>
+      <th>Delete</th>
+      <% _.each(messages, function(message) { %>
+        <tr>
+          <td><%=message.author%></td>
+          <td><%=message.content%></td>
+          <td>
+            <form action="/message/destroy/<%=message.id%>" method="post">
+              <button type="submit" class="button"/>Delete</button>
+            </form>
+          </td>
+        </tr>
+        <%})%>
+      </table>
+
+  </div>
+
+  <div id="newMessage">
+    <h1>Add a new message</h1>
+
+    <form action="/message" method="post">
+
+      <div class="field-wrap">
+        <label>Message <span class="req">* </span></label>
+        <textarea name="content" required>Enter text here...</textarea>
+      </div>
+
+      <button type="submit" class="button"/>Post</button>
+
+    </form>
+  </div>
+<% } else { %>
+
+  <% if(typeof registerd != 'undefined') { %>
+    <h1>Registration OK! <%=registerd%></h1>
+  <% } else { %>
+    <div id="registerNewUser">
+      <h1>Register</h1>
+
+      <form action="/user" method="post">
+        <div class="field-wrap">
+          <label>Username <span class="req">* </span></label>
+          <input name="username" type="text" required />
+        </div>
+
+        <div class="field-wrap">
+          <label>Email Address <span class="req">* </span></label>
+          <input name="email" type="email" required />
+        </div>
+
+        <div class="field-wrap">
+          <label>Password <span class="req">* </span></label>
+          <input name="password" type="password">
+        </div>
+
+        <button type="submit" class="button"/>Register</button>
+      </form>
+    </div>
+  <% } %>  
+
+  <div id="loginUser">
+    <h1>Login</h1>
+
+    <form action="/auth/local?next=/" method="post">
+      <div class="field-wrap">
+        <label>Email <span class="req">* </span></label>
+        <input name="identifier" type="email" required />
+      </div>
+
+      <div class="field-wrap">
+        <label>Password <span class="req">* </span></label>
+        <input name="password" type="password">
+      </div>
+
+      <button type="submit" class="button"/>Login</button>
+    </form>
+
+  </div>
+<% } %>
