@@ -10,8 +10,7 @@ module.exports = {
 	create: function(req, res){
     console.log("MessageController.create  was called");
     var messagesJSON = {
-        author: req.user.username,
-        email: req.user.email,
+        author: req.user.id,
         content: req.param('content'),
     }
 
@@ -25,11 +24,11 @@ module.exports = {
 
 	destroy: function  (req, res, next) {
     console.log("MessageController.destroy  was called");
-		Message.findOne(req.param('id')).exec(function (err, message){
+		Message.findOne(req.param('id')).populate('author').exec(function (err, message){
   			if (err) {
     			console.log(err);
   			}
-				if (message.email != req.user.email) {
+				if (message.author.email != req.user.email) {
 						return res.status(403).json({ error: 'You can remove just your own messages '});
 				}
 				Message.destroy(req.param('id'), function(err) {

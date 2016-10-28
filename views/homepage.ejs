@@ -6,9 +6,9 @@
       <th>Name</th>
       <th>Message</th>
       <th>Delete</th>
-      <% _.each(messages, function(message) { %>
+      <% _.each(messages, function(message) {%>
         <tr>
-          <td><%=message.author%></td>
+          <td><%=message.author.username%></td>
           <td><%=message.content%></td>
           <td>
             <form action="/message/destroy/<%=message.id%>" method="post">
@@ -62,7 +62,7 @@
         <button type="submit" class="button"/>Register</button>
       </form>
     </div>
-  <% } %>  
+  <% } %>
 
   <div id="loginUser">
     <h1>Login</h1>

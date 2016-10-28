@@ -8,8 +8,7 @@
 module.exports = {
 
   attributes: {
-        author : { type: 'string' },
-        email : { type: 'string' },
-        content : { type: 'string' }
+        content : { type: 'string' },
+        author : { model: 'user' }
   }
 };
