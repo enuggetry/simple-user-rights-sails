@@ -12,6 +12,10 @@ _.merge(exports, {
         messages: {
           collection: 'message',
           via: 'author'
+        },
+        rights: { //ADMIN = 0; MODERATOR=1; USER=10
+          type: 'integer',
+          required : true
         }
   }
 

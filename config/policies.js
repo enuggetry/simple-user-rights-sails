@@ -29,10 +29,14 @@ module.exports.policies = {
 
   MessageController: {
     '*': ['passport', 'sessionAuth'],
+    'create': ['passport', 'sessionAuth', 'canCreateMessage'],
+    'update': ['passport', 'sessionAuth', 'canModifyMessage'],
+    'destroy': ['passport', 'sessionAuth', 'canModifyMessage'],
   },
 
   UserController: {
-    'update': false,
+    'index': ['passport', 'sessionAuth', 'isAdmin'],
+    'update': ['passport', 'sessionAuth', 'isAdmin'],
   }
 
   /***************************************************************************
