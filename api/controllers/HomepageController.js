@@ -7,13 +7,13 @@
 
 module.exports = {
 
-	index: function(req, res, next) {
+	index: function (req, res) {
     console.log("HomepageController  was called");
 
 		Message.find().populate('author').exec(function (err, messages){
 			if (err) {
-					console.log(err);
-					return next(err);
+				console.log(err);
+				return res.badRequest(err);
 			}
 			res.view('homepage',
 			{
