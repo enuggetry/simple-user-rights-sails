@@ -21,10 +21,11 @@ The admin users are defined in "config/bootstrap.js" and are created when the ap
 This application uses the variable **rights** inside the **User** model to control the access to some methods.
 
 The variable **user.rights** is an integer value that is used as follows. Values lower than 10 are considered admin users.
-	- ADMIN = 0; 
-	- MODERATOR=1; 
+
+	- ADMIN = 0;
+	- MODERATOR=1;
 	- ... ;
-	- USER=10:
+	- USER=10;
 	- ...;
 
 
